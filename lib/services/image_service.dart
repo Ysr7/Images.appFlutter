@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ImageService extends ChangeNotifier {
-
   ImageService() {
     getAll();
   }
@@ -13,6 +12,8 @@ class ImageService extends ChangeNotifier {
   List<ImageModel> allImages = [];
 
   String _search = "";
+
+  bool loading = false;
 
   String get search => _search;
   set search(String value) {
@@ -74,7 +75,6 @@ class ImageService extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         response.data;
-        
       } else {
         throw Exception(response.data);
       }
@@ -85,19 +85,24 @@ class ImageService extends ChangeNotifier {
     getAll();
   }
 
-  Future<dynamic> register(ImageModel model) async {
+  Future<dynamic> register(
+      {ImageModel model, Function onFail, Function onSuccess}) async {
+    loading = true;
     try {
       final response = await getDio().post('/image/', data: model);
 
       if (response.statusCode == 200) {
-        return response.data;
+        onSuccess();
+        response.data;
       } else {
         throw Exception(response.data);
       }
     } on DioError catch (e) {
       final error = ErrorResponse.fromJson(e.response.data);
+      onFail(error);
       throw error.message;
     }
+    setLoading(false);
   }
 
   Future<dynamic> update(ImageModel model) async {
@@ -113,5 +118,10 @@ class ImageService extends ChangeNotifier {
       final error = ErrorResponse.fromJson(e.response.data);
       throw error.message;
     }
+  }
+
+  void setLoading(bool value) {
+    loading = value;
+    notifyListeners();
   }
 }

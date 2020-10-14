@@ -37,6 +37,8 @@ dev_dependencies:
   provider: ^4.3.2+2
   carousel_pro: ^1.0.0
   intl: ^0.16.1
+  image_picker: ^0.6.7+12
+  image_size_getter: ^0.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
