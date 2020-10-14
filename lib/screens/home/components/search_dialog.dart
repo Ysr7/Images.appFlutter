@@ -1,7 +1,8 @@
+import 'package:Images_App/services/image_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchDialog extends StatelessWidget {
-
   const SearchDialog(this.initialText);
 
   final String initialText;
@@ -29,6 +30,7 @@ class SearchDialog extends StatelessWidget {
                         Navigator.of(context).pop();
                       })),
               onFieldSubmitted: (text) {
+                Provider.of<ImageService>(context, listen: false).getAll();
                 Navigator.of(context).pop(text);
               },
             ),

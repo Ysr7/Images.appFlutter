@@ -11,9 +11,9 @@ class ImageListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () {
-      //   Navigator.of(context).pushNamed("/image", arguments: image);
-      // },
+      onTap: () {
+        Navigator.of(context).pushNamed("/image", arguments: image);
+      },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         child: Container(

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'components/image_list_tile.dart';
 import 'components/search_dialog.dart';
 
-class Home extends StatelessWidget {
+class HomeScreem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
