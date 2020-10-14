@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ImageService extends ChangeNotifier {
+
   ImageService() {
     getAll();
   }
@@ -29,7 +30,6 @@ class ImageService extends ChangeNotifier {
         allImages = list.map((i) {
           return ImageModel.fromJson(i);
         }).toList();
-        
       } else {
         throw Exception(response.data);
       }
@@ -68,12 +68,13 @@ class ImageService extends ChangeNotifier {
     }
   }
 
-  Future<dynamic> delete(int id) async {
+  void delete(int id) async {
     try {
       final response = await getDio().delete('/image/$id');
 
       if (response.statusCode == 200) {
-        return response.data;
+        response.data;
+        
       } else {
         throw Exception(response.data);
       }
@@ -81,6 +82,7 @@ class ImageService extends ChangeNotifier {
       final error = ErrorResponse.fromJson(e.response.data);
       throw error.message;
     }
+    getAll();
   }
 
   Future<dynamic> register(ImageModel model) async {
