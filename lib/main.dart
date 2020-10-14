@@ -1,4 +1,5 @@
 import 'package:Images_App/models/image.dart';
+import 'package:Images_App/screens/register_image/register_image_screen.dart';
 import 'package:Images_App/services/image_service.dart';
 import 'package:flutter/material.dart';
 import 'screens/home/home_screen.dart';
@@ -26,7 +27,10 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case "/image":
               return MaterialPageRoute(
-                  builder: (_) => ImageScreem(settings.arguments as ImageModel));
+                  builder: (_) =>
+                      ImageScreem(settings.arguments as ImageModel));
+            case "/register_image":
+              return MaterialPageRoute(builder: (_) => RegisterImageScreen());
             case "/home":
             default:
               return MaterialPageRoute(builder: (_) => HomeScreem());

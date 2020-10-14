@@ -9,6 +9,7 @@ class HomeScreem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white70,
       appBar: AppBar(
         title: Consumer<ImageService>(builder: (_, imageService, __) {
           if (imageService.search.isEmpty) {
@@ -72,7 +73,9 @@ class HomeScreem extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        tooltip: 'Increment',
+        onPressed: () {
+          Navigator.of(context).pushNamed("/register_image");
+        },
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
