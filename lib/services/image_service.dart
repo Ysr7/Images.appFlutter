@@ -1,15 +1,36 @@
-import 'package:Images_App/interceptor/error_response.dart';
+import 'dart:convert';
+
+import 'package:Images_App/models/error_response.dart';
 import 'package:Images_App/interceptor/interceptor.dart';
 import 'package:Images_App/models/image.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
-class ImageService {
-  Future<dynamic> getAll() async {
+class ImageService extends ChangeNotifier {
+  ImageService() {
+    getAll();
+  }
+
+  List<ImageModel> allImages = [];
+
+  String _search = "";
+
+  String get search => _search;
+  set search(String value) {
+    _search = value;
+    notifyListeners();
+  }
+
+  Future<void> getAll() async {
     try {
       var response = await getDio().get('/image');
 
       if (response.statusCode == 200) {
-        return response.data;
+        var list = response.data as List;
+
+        allImages = list.map((i) {
+          return ImageModel.fromJson(i);
+        }).toList();
       } else {
         throw Exception(response.data);
       }
@@ -17,6 +38,21 @@ class ImageService {
       var error = ErrorResponse.fromJson(e.response.data);
       throw error.message;
     }
+
+    notifyListeners();
+  }
+
+  List<ImageModel> get filteredImages {
+    final List<ImageModel> filteredImages = [];
+
+    if (search.isEmpty) {
+      filteredImages.addAll(allImages);
+    } else {
+      filteredImages.addAll(allImages.where(
+          (p) => p.descripion.toLowerCase().contains(search.toLowerCase())));
+    }
+
+    return filteredImages;
   }
 
   Future<dynamic> consultId(int id) async {
@@ -49,7 +85,7 @@ class ImageService {
     }
   }
 
-  Future<dynamic> register(Image model) async {
+  Future<dynamic> register(ImageModel model) async {
     try {
       var response = await getDio().post('/image/', data: model);
 
@@ -64,7 +100,7 @@ class ImageService {
     }
   }
 
-  Future<dynamic> update(Image model) async {
+  Future<dynamic> update(ImageModel model) async {
     try {
       var response = await getDio().put('/image/', data: model);
 
