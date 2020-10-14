@@ -1,10 +1,10 @@
 import 'package:Images_App/models/image.dart';
 import 'package:Images_App/services/image_service.dart';
 import 'package:flutter/material.dart';
-import 'screens/home/home.dart';
+import 'screens/home/home_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'screens/image/image.dart';
+import 'screens/image/image_screen.dart';
 
 Future<void> main() async => runApp(MyApp());
 
