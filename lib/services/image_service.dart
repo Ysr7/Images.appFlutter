@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:Images_App/models/error_response.dart';
 import 'package:Images_App/interceptor/interceptor.dart';
 import 'package:Images_App/models/image.dart';
@@ -23,20 +21,20 @@ class ImageService extends ChangeNotifier {
 
   Future<void> getAll() async {
     try {
-      var response = await getDio().get('/image');
+      final response = await getDio().get('/image');
 
       if (response.statusCode == 200) {
-        var list = response.data as List;
+        final list = response.data as List;
 
         allImages = list.map((i) {
           return ImageModel.fromJson(i);
         }).toList();
+        
       } else {
         throw Exception(response.data);
       }
     } on DioError catch (e) {
-      var error = ErrorResponse.fromJson(e.response.data);
-      throw error.message;
+      throw e.message;
     }
 
     notifyListeners();
@@ -57,7 +55,7 @@ class ImageService extends ChangeNotifier {
 
   Future<dynamic> consultId(int id) async {
     try {
-      var response = await getDio().get('/image/$id');
+      final response = await getDio().get('/image/$id');
 
       if (response.statusCode == 200) {
         return response.data;
@@ -65,14 +63,14 @@ class ImageService extends ChangeNotifier {
         throw Exception(response.data);
       }
     } on DioError catch (e) {
-      var error = ErrorResponse.fromJson(e.response.data);
+      final error = ErrorResponse.fromJson(e.response.data);
       throw error.message;
     }
   }
 
   Future<dynamic> delete(int id) async {
     try {
-      var response = await getDio().delete('/image/$id');
+      final response = await getDio().delete('/image/$id');
 
       if (response.statusCode == 200) {
         return response.data;
@@ -80,14 +78,14 @@ class ImageService extends ChangeNotifier {
         throw Exception(response.data);
       }
     } on DioError catch (e) {
-      var error = ErrorResponse.fromJson(e.response.data);
+      final error = ErrorResponse.fromJson(e.response.data);
       throw error.message;
     }
   }
 
   Future<dynamic> register(ImageModel model) async {
     try {
-      var response = await getDio().post('/image/', data: model);
+      final response = await getDio().post('/image/', data: model);
 
       if (response.statusCode == 200) {
         return response.data;
@@ -95,14 +93,14 @@ class ImageService extends ChangeNotifier {
         throw Exception(response.data);
       }
     } on DioError catch (e) {
-      var error = ErrorResponse.fromJson(e.response.data);
+      final error = ErrorResponse.fromJson(e.response.data);
       throw error.message;
     }
   }
 
   Future<dynamic> update(ImageModel model) async {
     try {
-      var response = await getDio().put('/image/', data: model);
+      final response = await getDio().put('/image/', data: model);
 
       if (response.statusCode == 200) {
         return response.data;
@@ -110,7 +108,7 @@ class ImageService extends ChangeNotifier {
         throw Exception(response.data);
       }
     } on DioError catch (e) {
-      var error = ErrorResponse.fromJson(e.response.data);
+      final error = ErrorResponse.fromJson(e.response.data);
       throw error.message;
     }
   }

@@ -6,9 +6,9 @@ class ErrorResponse {
   ErrorResponse({this.type, this.message, this.exceptionType});
 
   ErrorResponse.fromJson(Map<String, dynamic> json) {
-    type = json['Type'];
-    message = json['Message'];
-    exceptionType = json['ExceptionType'];
+    type = json['Type'] as String;
+    message = json['Message'] as String;
+    exceptionType = json['ExceptionType'] as String;
   }
 
   Map<String, dynamic> toJson() {
