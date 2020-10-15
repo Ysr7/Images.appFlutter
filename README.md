@@ -1,16 +1,18 @@
-# Images_App
+# Images.APP
 
-A new Flutter project.
+Este é um App Flutter que utiliza uma API .Net possuindo as funções de cadastrar,listar,excluir,like e dislike em imagens
 
-## Getting Started
+## Instalação
 
-This project is a starting point for a Flutter application.
+Devemos ter instalado o Flutter em sua máquina, nesse [Link](https://flutter.dev/docs/get-started/install) terá as instruções para instalação.
 
-A few resources to get you started if this is your first Flutter project:
+Também devemos instalar a extensão Flutter e Dart no VSCode
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Após isso vamos entrar no arquivo interceptor.dart para verificarmos que a baseUrl na linha 6 é a mesma da nossa [API](https://github.com/Ysr7/Images.api).
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Por fim podemos entrar no nosso modo de debug no VSCode
+
+Podemos tambem gerar nosso APK usando o comando abaixo:
+```bash
+flutter build apk --release
+```
