@@ -85,27 +85,31 @@ class ImageService extends ChangeNotifier {
     getAll();
   }
 
-  Future<dynamic> register(
+  Future<void> register(
       {ImageModel model, Function onFail, Function onSuccess}) async {
     loading = true;
     try {
-      final response = await getDio().post('/image/', data: model);
+      final response = await getDio().post('/image/', data: model.toJson());
 
       if (response.statusCode == 200) {
         onSuccess();
         response.data;
       } else {
+        setLoading(false);
         throw Exception(response.data);
       }
     } on DioError catch (e) {
+      setLoading(false);
       final error = ErrorResponse.fromJson(e.response.data);
       onFail(error);
       throw error.message;
     }
     setLoading(false);
+    notifyListeners();
+    getAll();
   }
 
-  Future<dynamic> update(ImageModel model) async {
+  Future<void> update(ImageModel model) async {
     try {
       final response = await getDio().put('/image/', data: model);
 

@@ -27,7 +27,7 @@ class ImageScreem extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            title: Text(image.descripion),
+            title: Text(image.title),
             centerTitle: true,
           ),
           body: ListView(
@@ -115,7 +115,7 @@ class ImageScreem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      image.length.toString(),
+                      image.length,
                       style: const TextStyle(fontSize: 16),
                     ),
                     Padding(

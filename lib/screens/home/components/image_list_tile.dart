@@ -34,7 +34,7 @@ class ImageListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      image.descripion,
+                      image.title,
                       style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.w800),
                     ),
