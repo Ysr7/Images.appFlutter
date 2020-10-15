@@ -26,9 +26,10 @@ class _RegisterImageScreen extends State<RegisterImageScreen> {
 
   File imageFile;
 
-  String sizeImage;
-
   String imageBase64;
+
+  int heightSizeImage;
+  int widthSizeImage;
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
@@ -36,10 +37,17 @@ class _RegisterImageScreen extends State<RegisterImageScreen> {
       if (pickedFile != null) {
         imageFile = File(pickedFile.path);
 
-        sizeImage = ImageSizeGetter.getSize(FileInput(imageFile)) as String;
-        
+        Size sizeImage = ImageSizeGetter.getSize(FileInput(imageFile));
+
+        heightSizeImage = sizeImage.height;
+        widthSizeImage = sizeImage.width;
+
         List<int> imageBytes = imageFile.readAsBytesSync();
         imageBase64 = base64Encode(imageBytes);
+
+        image.picture = imageBase64;
+        image.length =
+            (heightSizeImage.toString() + 'x' + widthSizeImage.toString()).toString();
       } else {
         print('No image selected.');
       }
@@ -77,7 +85,6 @@ class _RegisterImageScreen extends State<RegisterImageScreen> {
                         ),
                         onPressed: () {
                           getImage();
-                          // _pickImageFromCamera();
                         },
                       ),
                       TextFormField(
@@ -92,7 +99,7 @@ class _RegisterImageScreen extends State<RegisterImageScreen> {
                           }
                           return null;
                         },
-                        onSaved: (title) => image.descripion = title,
+                        onSaved: (title) => image.title = title,
                       ),
                       const SizedBox(
                         height: 16,
