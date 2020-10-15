@@ -82,7 +82,7 @@ class ImageScreem extends StatelessWidget {
                             ),
                             onPressed: () {
                               AlertDialog alert = AlertDialog(
-                                title: Text("Você deu deslike nessa foto!"),
+                                title: Text("Você deu dislike nessa foto!"),
                                 actions: [
                                   okButton,
                                 ],
@@ -148,10 +148,11 @@ class ImageScreem extends StatelessWidget {
                           Widget continuaButton = FlatButton(
                             child: Text("Confirmar"),
                             onPressed: () {
+                              
                               Provider.of<ImageService>(context, listen: false)
                                   .delete(image.id);
                               Navigator.of(context).pop();
-                            },
+                              Navigator.of(context).pop();                            },
                           );
                           //configura o AlertDialog
                           AlertDialog alert = AlertDialog(
