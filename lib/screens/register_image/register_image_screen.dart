@@ -47,9 +47,10 @@ class _RegisterImageScreen extends State<RegisterImageScreen> {
 
         image.picture = imageBase64;
         image.length =
-            (heightSizeImage.toString() + 'x' + widthSizeImage.toString()).toString();
+            (heightSizeImage.toString() + 'x' + widthSizeImage.toString())
+                .toString();
       } else {
-        print('No image selected.');
+        return null;
       }
     });
   }
@@ -141,20 +142,28 @@ class _RegisterImageScreen extends State<RegisterImageScreen> {
                               : () {
                                   if (formKey.currentState.validate()) {
                                     formKey.currentState.save();
-
-                                    imageService.register(
-                                        model: image,
-                                        onSuccess: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        onFail: (e) {
-                                          scaffoldKey.currentState
-                                              .showSnackBar(SnackBar(
-                                            content:
-                                                Text("Falha ao cadastrar: $e"),
-                                            backgroundColor: Colors.red,
-                                          ));
-                                        });
+                                    if (imageFile != null) {
+                                      imageService.register(
+                                          model: image,
+                                          onSuccess: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          onFail: (e) {
+                                            scaffoldKey.currentState
+                                                .showSnackBar(SnackBar(
+                                              content: Text(
+                                                  "Falha ao cadastrar: $e"),
+                                              backgroundColor: Colors.red,
+                                            ));
+                                          });
+                                    } else {
+                                      scaffoldKey.currentState
+                                          .showSnackBar(SnackBar(
+                                        content: Text(
+                                            "É obrigatorio tirar uma foto!"),
+                                        backgroundColor: Colors.red,
+                                      ));
+                                    }
                                   }
                                 },
                           child: imageService.loading
@@ -179,9 +188,8 @@ class _RegisterImageScreen extends State<RegisterImageScreen> {
 
   Widget placeHolder() {
     return Container(
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 50),
-      child:
-          this.imageFile == null ? Placeholder() : Image.file(this.imageFile),
+      padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
+      child: this.imageFile == null ? null : Image.file(this.imageFile),
     );
   }
 }
