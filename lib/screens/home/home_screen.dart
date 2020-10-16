@@ -13,7 +13,7 @@ class HomeScreem extends StatelessWidget {
       appBar: AppBar(
         title: Consumer<ImageService>(builder: (_, imageService, __) {
           if (imageService.search.isEmpty) {
-            return const Text("Images");
+            return const Text("Imagens");
           } else {
             return LayoutBuilder(builder: (_, constraints) {
               return GestureDetector(
