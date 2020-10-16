@@ -13,11 +13,11 @@ class ImageScreem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget okButton = FlatButton(
-      child: Text("OK"),
+    final Widget okButton = FlatButton(
       onPressed: () {
         Navigator.of(context).pop();
       },
+      child: const Text("OK"),
     );
 
     return ChangeNotifierProvider.value(

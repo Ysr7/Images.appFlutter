@@ -61,7 +61,7 @@ class _RegisterImageScreen extends State<RegisterImageScreen> {
       backgroundColor: Colors.white70,
       key: scaffoldKey,
       appBar: AppBar(
-        title: const Text("Cadastrar Imagem"),
+        title: const Text("Cadastrar imagen"),
       ),
       body: Center(
         child: Card(

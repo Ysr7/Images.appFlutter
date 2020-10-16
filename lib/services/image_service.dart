@@ -69,7 +69,7 @@ class ImageService extends ChangeNotifier {
     }
   }
 
-  void delete(int id) async {
+  Future<void> delete(int id) async {
     try {
       final response = await getDio().delete('/image/$id');
 
