@@ -39,6 +39,8 @@ dev_dependencies:
   intl: ^0.16.1
   image_picker: ^0.6.7+12
   image_size_getter: ^0.2.0
+  full_screen_image: ^1.0.2
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
