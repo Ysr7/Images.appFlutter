@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:Images_App/models/image.dart';
 import 'package:Images_App/services/image_service.dart';
-import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 
 class ImageScreem extends StatelessWidget {
   const ImageScreem(this.image);
@@ -14,7 +13,6 @@ class ImageScreem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Widget okButton = FlatButton(
       child: Text("OK"),
       onPressed: () {
@@ -33,18 +31,15 @@ class ImageScreem extends StatelessWidget {
           body: ListView(
             children: <Widget>[
               AspectRatio(
-                aspectRatio: 1,
-                child: Carousel(
-                  images: [
-                    Image.memory(base64Decode(image.picture)),
-                  ],
-                  dotSize: 4,
-                  dotBgColor: Colors.transparent,
-                  dotColor: Theme.of(context).primaryColor,
-                  dotSpacing: 15,
-                  autoplay: false,
-                ),
-              ),
+                  aspectRatio: 1,
+                  child: FullScreenWidget(
+                    child: ClipRRect(
+                      child: Image.memory(
+                        base64Decode(image.picture),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )),
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -148,11 +143,11 @@ class ImageScreem extends StatelessWidget {
                           Widget continuaButton = FlatButton(
                             child: Text("Confirmar"),
                             onPressed: () {
-                              
                               Provider.of<ImageService>(context, listen: false)
                                   .delete(image.id);
                               Navigator.of(context).pop();
-                              Navigator.of(context).pop();                            },
+                              Navigator.of(context).pop();
+                            },
                           );
                           //configura o AlertDialog
                           AlertDialog alert = AlertDialog(

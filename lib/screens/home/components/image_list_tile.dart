@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:Images_App/models/image.dart';
 import 'package:flutter/material.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 
 class ImageListTile extends StatelessWidget {
   const ImageListTile(this.image);
@@ -23,7 +24,14 @@ class ImageListTile extends StatelessWidget {
             children: <Widget>[
               AspectRatio(
                 aspectRatio: 1,
-                child: Image.memory(base64Decode(image.picture)),
+                child: FullScreenWidget(
+                  child: ClipRRect(
+                    child: Image.memory(
+                      base64Decode(image.picture),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(
                 width: 16,
