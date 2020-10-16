@@ -101,7 +101,7 @@ class ImageService extends ChangeNotifier {
     } on DioError catch (e) {
       setLoading(false);
       final error = ErrorResponse.fromJson(e.response.data);
-      onFail(error);
+      onFail(error.message);
       throw error.message;
     }
     setLoading(false);
