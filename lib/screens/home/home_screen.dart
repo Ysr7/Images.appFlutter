@@ -63,7 +63,6 @@ class HomeScreem extends StatelessWidget {
       ),
       body: Consumer<ImageService>(
         builder: (_, imageService, __) {
-          final filteredProducts = imageService.filteredImages;
           return ListView.builder(
               padding: const EdgeInsets.all(4),
               itemCount: imageService.filteredImages.length,

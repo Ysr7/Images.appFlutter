@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:full_screen_image/full_screen_image.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class ImageScreem extends StatelessWidget {
   const ImageScreem(this.image);
@@ -50,7 +51,7 @@ class ImageScreem extends StatelessWidget {
                       children: [
                         IconButton(
                             icon: new Icon(
-                              Icons.favorite,
+                              AntDesign.like1,
                               color: Colors.green,
                               size: 50,
                             ),
@@ -71,7 +72,7 @@ class ImageScreem extends StatelessWidget {
                             }),
                         IconButton(
                             icon: new Icon(
-                              Icons.cancel,
+                              AntDesign.dislike1,
                               color: Colors.red,
                               size: 50,
                             ),

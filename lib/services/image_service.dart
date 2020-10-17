@@ -47,8 +47,8 @@ class ImageService extends ChangeNotifier {
     if (search.isEmpty) {
       filteredImages.addAll(allImages);
     } else {
-      filteredImages.addAll(allImages.where(
-          (p) => p.descripion.toLowerCase().contains(search.toLowerCase())));
+      filteredImages.addAll(allImages
+          .where((p) => p.title.toLowerCase().contains(search.toLowerCase())));
     }
 
     return filteredImages;

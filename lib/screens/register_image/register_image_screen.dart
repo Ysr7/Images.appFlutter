@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_size_getter/file_input.dart';
 import 'package:image_size_getter/image_size_getter.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 
 class RegisterImageScreen extends StatefulWidget {
   @override
@@ -187,9 +188,11 @@ class _RegisterImageScreen extends State<RegisterImageScreen> {
   }
 
   Widget placeHolder() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
-      child: this.imageFile == null ? null : Image.file(this.imageFile),
+    return FullScreenWidget(
+      child: Container(
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        child: this.imageFile == null ? null : Image.file(this.imageFile),
+      ),
     );
   }
 }
